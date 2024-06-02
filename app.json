@@ -16,6 +16,20 @@
       ]
     ],
     "name": "fitness-yabfit-app",
-    "slug": "fitness-yabfit-app"
+    "slug": "fitness-yabfit-app",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "bac75500-46c2-4189-9eb3-c576464b53f2"
+      }
+    },
+    "android": {
+      "package": "com.manera.fitnessyabfitapp"
+    }
   }
 }
