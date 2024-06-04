@@ -24,7 +24,7 @@ const Index = () => {
 
   useEffect(() => {
     if (user) {
-      router.replace("/calculator");
+      router.replace("/home");
     }
   }, [user]);
 
