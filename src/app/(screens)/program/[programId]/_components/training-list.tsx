@@ -4,7 +4,7 @@ import { ITypeTrain } from "@/interfaces/type-train-interface";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "expo-router";
 import { FC } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
 
 interface IProps {
   programId: string;
@@ -26,22 +26,24 @@ export const TrainingList: FC<IProps> = ({ programId }) => {
   });
 
   return (
-    <View className="gap-10">
-      {training?.baseWorkout.map((workout, idx) => (
-        <Pressable
-          onPress={() => router.push(`${pathname}/${workout.$id}`)}
-          key={workout.$id}
-          className={`p-5 rounded-lg border ${idx === 1 && "min-h-[128px]"}`}
-        >
-          <View className="gap-3">
-            <Text className="text-2xl text-center font-extrabold">
-              {workout.name}
-            </Text>
+    
+      <View className="flex-col gap-3">
+        {training?.baseWorkout.map((workout, idx) => (
+          <Pressable
+            onPress={() => router.push(`${pathname}/${workout.$id}`)}
+            key={workout.$id}
+            className={`p-5 rounded-lg border ${idx === 1 && "min-h-[128px]"}`}
+          >
+            <View className="gap-3">
+              <Text className="text-2xl text-center font-extrabold">
+                {workout.name}
+              </Text>
 
-            <Text className="text-center">{workout.description}</Text>
-          </View>
-        </Pressable>
-      ))}
-    </View>
+              <Text className="text-center">{workout.description}</Text>
+            </View>
+          </Pressable>
+        ))}
+      </View>
+   
   );
 };

@@ -186,9 +186,7 @@ export const Accordion: FC<{
                                 />
                                 <Pressable
                                   onPress={() => {
-                                    router.push(
-                                      "/(screens)/exercises/modal-exercise"
-                                    );
+                                    router.push("/home/modal-from-add-exercise");
                                     router.setParams({
                                       exerciseId: exercise.$id,
                                     });

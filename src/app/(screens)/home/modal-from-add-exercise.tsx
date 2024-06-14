@@ -1,20 +1,20 @@
 import { db } from "@/appwrite";
 import { ExerciseNavbar } from "@/components/ExerciseNavbar";
-import { COLLECTION_EXERCISES, DATABASE_ID } from "@/constants/appwrite";
+import { DATABASE_ID, COLLECTION_EXERCISES } from "@/constants/appwrite";
 import { IExercises } from "@/interfaces/exercises.interface";
 import { useQuery } from "@tanstack/react-query";
 import { Query } from "appwrite";
 import {
   useLocalSearchParams,
   useNavigation,
-  usePathname,
   useRouter,
+  usePathname,
 } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect } from "react";
 import { Image, Pressable, ScrollView, Text, View } from "react-native";
 
-const Modal = () => {
+const Index = () => {
   const { exerciseId } = useLocalSearchParams<{ exerciseId: string }>();
   const { setOptions } = useNavigation();
   const { push, back } = useRouter();
@@ -39,7 +39,7 @@ const Modal = () => {
         return (
           <Pressable
             onPress={() => {
-              // if (pathname.includes('/exercises')) return back()
+              // if (pathname.includes("/exercises")) return back();
               // return push("/home/add-workout-screen");
               return back();
             }}
@@ -71,4 +71,4 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+export default Index;

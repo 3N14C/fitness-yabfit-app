@@ -6,13 +6,15 @@ const Layout = () => {
   const { back } = useRouter();
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown: true }}>
       <Stack.Screen
         name="modal-exercise"
         options={{
           presentation: "modal",
           animation: "slide_from_bottom",
           headerBackButtonMenuEnabled: true,
+          headerTitle: '',
+          headerShadowVisible: false
         }}
         initialParams={{ exerciseId: exerciseId }}
       />
@@ -21,6 +23,7 @@ const Layout = () => {
         name="[categoryId]"
         options={{
           animation: "fade_from_bottom",
+          headerShown: false
         }}
       />
     </Stack>

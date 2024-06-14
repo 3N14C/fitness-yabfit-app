@@ -69,7 +69,7 @@ const Index = () => {
                 <Pressable
                   key={exercise.$id}
                   onPress={() => {
-                    router.push("/exercises/modal");
+                    router.push("/(screens)/exercises/modal-exercise");
                     router.setParams({
                       exerciseId: exercise.$id,
                     });

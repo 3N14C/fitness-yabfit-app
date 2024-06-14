@@ -6,7 +6,7 @@ import { Link, router } from "expo-router";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
-  SafeAreaView, StatusBar, StyleSheet, Text,
+  SafeAreaView, ScrollView, StatusBar, StyleSheet, Text,
   TextInput,
   TouchableHighlight,
   View
@@ -71,169 +71,173 @@ const Index = () => {
 
   return (
     <SafeAreaView className=" flex-1 bg-white">
-      <Animated.View
-        entering={FadeInUp.delay(100).springify()}
-        className="py-[20px]"
-      >
-        <View style={styles.container}>
-          <Logo />
-        </View>
-      </Animated.View>
-      <View className="flex-1 justify-center items-center">
-        <View className="max-w-[350px] w-screen flex-col gap-[30px]">
-          <Controller
-            control={control}
-            name="name"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Animated.View
-                entering={FadeInUp.delay(300).springify()}
-                className="w-full"
-              >
-                <Text className=" mb-2 text-[#bdbdbd]">имя пользователя</Text>
-                <TextInput
-                  className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
-                    errors?.name?.message ? "border-[#ff7878]" : ""
-                  }`}
-                  placeholder="John Doe"
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholderTextColor={"#bdbdbd"}
-                />
+      <ScrollView>
+        <Animated.View
+          entering={FadeInUp.delay(100).springify()}
+          className="py-[20px]"
+        >
+          <View style={styles.container}>
+            <Logo />
+          </View>
+        </Animated.View>
+        <View className="flex-1 justify-center items-center mt-32">
+          <View className="max-w-[350px] w-screen flex-col gap-[30px]">
+            <Controller
+              control={control}
+              name="name"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Animated.View
+                  entering={FadeInUp.delay(300).springify()}
+                  className="w-full"
+                >
+                  <Text className=" mb-2 text-[#bdbdbd]">имя пользователя</Text>
+                  <TextInput
+                    className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
+                      errors?.name?.message ? "border-[#ff7878]" : ""
+                    }`}
+                    placeholder="John Doe"
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholderTextColor={"#bdbdbd"}
+                  />
 
-                <>
-                  {errors?.name?.message && (
-                    <Text className="text-red-500">
-                      *{errors?.name?.message}
-                    </Text>
-                  )}
-                </>
-              </Animated.View>
-            )}
-          />
+                  <>
+                    {errors?.name?.message && (
+                      <Text className="text-red-500">
+                        *{errors?.name?.message}
+                      </Text>
+                    )}
+                  </>
+                </Animated.View>
+              )}
+            />
 
-          <Controller
-            control={control}
-            name="email"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Animated.View
-                entering={FadeInUp.delay(500).springify()}
-                className="w-full"
-              >
-                <Text className=" text-[#bdbdbd] mb-2">электронный адрес</Text>
-                <TextInput
-                  className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
-                    errors.email?.message && "border-[#ff7878]"
-                  }`}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder={"example@mail.ru"}
-                  placeholderTextColor={"#bdbdbd"}
-                />
-
-                <>
-                  {errors.email?.message && (
-                    <Text className="text-red-500">
-                      *{errors.email?.message}
-                    </Text>
-                  )}
-                </>
-              </Animated.View>
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Animated.View
-                entering={FadeInUp.delay(700).springify()}
-                className="w-full"
-              >
-                <Text className=" text-[#bdbdbd] mb-2">пароль</Text>
-                <TextInput
-                  className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
-                    errors.password?.message && "border-[#ff7878]"
-                  }`}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder="●●●●●●●●●●"
-                  placeholderTextColor={"#bdbdbd"}
-                />
-
-                <>
-                  {errors.password?.message && (
-                    <Text className="text-red-500">
-                      *{errors.password?.message}
-                    </Text>
-                  )}
-                </>
-              </Animated.View>
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="isChecked"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <View className="relative">
-                <View className="flex-row items-center">
-                  <Animated.View entering={FadeInLeft.delay(900).springify()}>
-                    <BouncyCheckbox
-                      size={20}
-                      fillColor="#ff7878"
-                      isChecked={value}
-                      onPress={onChange}
-                    />
-                  </Animated.View>
-
-                  <Animated.Text
-                    entering={FadeInRight.delay(900).springify()}
-                    className=" max-w-[223px]"
-                  >
-                    Я согласен с{" "}
-                    <Text className="text-[#ff7878]">политикой сервиса</Text> и
-                    даю разрешение на{" "}
-                    <Text className="text-[#ff7878]">
-                      обработку персональных данных
-                    </Text>
-                  </Animated.Text>
-                </View>
-
-                {errors.isChecked?.message && (
-                  <Text className="text-red-500 absolute -bottom-5">
-                    *{errors.isChecked?.message}
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Animated.View
+                  entering={FadeInUp.delay(500).springify()}
+                  className="w-full"
+                >
+                  <Text className=" text-[#bdbdbd] mb-2">
+                    электронный адрес
                   </Text>
-                )}
-              </View>
-            )}
-          />
+                  <TextInput
+                    className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
+                      errors.email?.message && "border-[#ff7878]"
+                    }`}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder={"example@mail.ru"}
+                    placeholderTextColor={"#bdbdbd"}
+                  />
+
+                  <>
+                    {errors.email?.message && (
+                      <Text className="text-red-500">
+                        *{errors.email?.message}
+                      </Text>
+                    )}
+                  </>
+                </Animated.View>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Animated.View
+                  entering={FadeInUp.delay(700).springify()}
+                  className="w-full"
+                >
+                  <Text className=" text-[#bdbdbd] mb-2">пароль</Text>
+                  <TextInput
+                    className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
+                      errors.password?.message && "border-[#ff7878]"
+                    }`}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder="●●●●●●●●●●"
+                    placeholderTextColor={"#bdbdbd"}
+                  />
+
+                  <>
+                    {errors.password?.message && (
+                      <Text className="text-red-500">
+                        *{errors.password?.message}
+                      </Text>
+                    )}
+                  </>
+                </Animated.View>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="isChecked"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <View className="relative">
+                  <View className="flex-row items-center">
+                    <Animated.View entering={FadeInLeft.delay(900).springify()}>
+                      <BouncyCheckbox
+                        size={20}
+                        fillColor="#ff7878"
+                        isChecked={value}
+                        onPress={onChange}
+                      />
+                    </Animated.View>
+
+                    <Animated.Text
+                      entering={FadeInRight.delay(900).springify()}
+                      className=" max-w-[223px]"
+                    >
+                      Я согласен с{" "}
+                      <Text className="text-[#ff7878]">политикой сервиса</Text>{" "}
+                      и даю разрешение на{" "}
+                      <Text className="text-[#ff7878]">
+                        обработку персональных данных
+                      </Text>
+                    </Animated.Text>
+                  </View>
+
+                  {errors.isChecked?.message && (
+                    <Text className="text-red-500 absolute -bottom-5">
+                      *{errors.isChecked?.message}
+                    </Text>
+                  )}
+                </View>
+              )}
+            />
+          </View>
         </View>
-      </View>
 
-      <View className="justify-center items-center pb-[20px]">
-        <View className="flex-col gap-[20px]">
-          <TouchableHighlight
-            onPress={handleSubmit(async () => await mutateAsync())}
-            className="bg-[#ff7878] w-creen w-[350px] rounded-full"
-          >
-            <Text className="uppercase text-center text-[21px] py-[15px] text-white font-bold">
-              регистрация
-            </Text>
-          </TouchableHighlight>
-
-          <TouchableHighlight className="">
-            <Link
-              href={"/(screens)/auth/login/"}
-              className="uppercase text-center text-[21px] py-[15px]  font-bold"
+        <View className="justify-center items-center mt-10">
+          <View className="flex-col gap-[20px]">
+            <TouchableHighlight
+              onPress={handleSubmit(async () => await mutateAsync())}
+              className="bg-[#ff7878] w-creen w-[350px] rounded-full"
             >
-              вход
-            </Link>
-          </TouchableHighlight>
+              <Text className="uppercase text-center text-[21px] py-[15px] text-white font-bold">
+                регистрация
+              </Text>
+            </TouchableHighlight>
+
+            <TouchableHighlight className="">
+              <Link
+                href={"/(screens)/auth/login/"}
+                className="uppercase text-center text-[21px] py-[15px]  font-bold"
+              >
+                вход
+              </Link>
+            </TouchableHighlight>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

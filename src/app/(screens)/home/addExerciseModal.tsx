@@ -2,17 +2,15 @@ import { db } from "@/appwrite";
 import { Accordion } from "@/components/Accordion";
 import { CustomButton } from "@/components/CustomButton";
 import {
-  DATABASE_ID,
-  COLLECTION_MYWORKOUTS,
   COLLECTION_CATEGORY,
+  COLLECTION_MYWORKOUTS,
+  DATABASE_ID,
 } from "@/constants/appwrite";
 import { ICategory } from "@/interfaces/category.interface";
-import { IExercises } from "@/interfaces/exercises.interface";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { ID, Query } from "appwrite";
 import { router, useGlobalSearchParams } from "expo-router";
 import { useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 const Modal = () => {
   const { userWorkoutId } = useGlobalSearchParams<{ userWorkoutId: string }>();

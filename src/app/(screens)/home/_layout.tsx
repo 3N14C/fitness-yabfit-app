@@ -6,11 +6,19 @@ const Layout = () => {
       <Stack.Screen
         name="add-workout-screen"
         // options={{ presentation: "", animation: "slide_from_bottom" }}
+        options={{
+          headerShown: true,
+          headerBackButtonMenuEnabled: true,
+          headerShadowVisible: false,
+          headerTitle: "",
+        }}
       />
 
+      <Stack.Screen name="addExerciseModal" options={{ headerShown: false }} />
+
       <Stack.Screen
-        name="addExerciseModal"
-        options={{ presentation: "modal", animation: "slide_from_bottom" }}
+        name="modal-from-add-exercise"
+        options={{ headerShown: true }}
       />
     </Stack>
   );

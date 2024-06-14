@@ -10,8 +10,9 @@ import { useAuth } from "@/context/AuthContext";
 import { ICategory } from "@/interfaces/category.interface";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import * as ImagePicker from "expo-image-picker";
-import { router } from "expo-router";
-import { useState } from "react";
+import { router, useNavigation, useRouter } from "expo-router";
+import { ArrowLeft } from "lucide-react-native";
+import { useEffect, useState } from "react";
 import {
   Image,
   Pressable,
@@ -23,6 +24,8 @@ import {
 
 const Modal = () => {
   const { user } = useAuth();
+  const {setOptions} = useNavigation()
+  const {push} = useRouter()
 
   const [categoryName, setCategoryName] = useState<string>("");
   const [myWorkouts, setMyWorkouts] = useState([]);
@@ -70,6 +73,21 @@ const Modal = () => {
       setImage(null);
     },
   });
+
+  useEffect(() => {
+    setOptions({
+      header: () => {
+        return (
+          <Pressable
+            onPress={() => push("/home")}
+            className="bg-white p-5"
+          >
+            <ArrowLeft className="text-black p-2" />
+          </Pressable>
+        );
+      },
+    });
+  }, []);
 
   return (
     <View className="flex-1 px-[20px] bg-white">

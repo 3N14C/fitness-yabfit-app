@@ -45,7 +45,7 @@ export const MyWorkouts: FC = () => {
 
         <Pressable
           onPress={() => {
-            router.push("/home/modal");
+            router.push("/home/add-workout-screen");
           }}
         >
           <View

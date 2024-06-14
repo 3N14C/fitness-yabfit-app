@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import {
   SafeAreaView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -60,106 +61,108 @@ const Index = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <Animated.View
-        entering={FadeInUp.delay(100).springify()}
-        className="py-[20px]"
-      >
-        <View style={styles.container}>
-          <Logo />
+      <ScrollView className="">
+        <Animated.View
+          entering={FadeInUp.delay(100).springify()}
+          className="py-[20px]"
+        >
+          <View style={styles.container}>
+            <Logo />
+          </View>
+        </Animated.View>
+        <View className="justify-center items-center mt-40">
+          <View className="max-w-[350px] w-screen flex-col gap-[30px]">
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Animated.View
+                  entering={FadeInUp.delay(300).springify()}
+                  className="w-full"
+                >
+                  <Text className=" text-[#bdbdbd] mb-2">Электронный адрес</Text>
+                  <TextInput
+                    className={`  text-base py-[10px] px-3 border border-black/30 rounded-full ${
+                      errors.email?.message && "border-[#ff7878]"
+                    }`}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholder={errors.email?.message ? "" : "example@mail.ru"}
+                    placeholderTextColor={"#bdbdbd"}
+                  />
+
+                  <>
+                    {errors.email?.message && (
+                      <Text className="text-red-500">
+                        *{errors.email?.message}
+                      </Text>
+                    )}
+                  </>
+                </Animated.View>
+              )}
+            />
+
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, onBlur, value } }) => (
+                <Animated.View
+                  entering={FadeInUp.delay(500).springify()}
+                  className="w-full"
+                >
+                  <Text className=" text-[#bdbdbd] mb-2">Пароль</Text>
+                  <TextInput
+                    className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
+                      errors.password?.message && "border-[#ff7878]"
+                    }`}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    placeholderTextColor={"#bdbdbd"}
+                    placeholder="●●●●●●●●●●"
+                  />
+
+                  <>
+                    {errors.password?.message && (
+                      <Text className="text-red-500">
+                        *{errors.password?.message}
+                      </Text>
+                    )}
+                  </>
+                </Animated.View>
+              )}
+            />
+          </View>
         </View>
-      </Animated.View>
-      <View className="flex-1 justify-center items-center">
-        <View className="max-w-[350px] w-screen flex-col gap-[30px]">
-          <Controller
-            control={control}
-            name="email"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Animated.View
-                entering={FadeInUp.delay(300).springify()}
-                className="w-full"
+
+        <View className="justify-center items-center mt-60">
+          <View className="flex-col gap-[20px] justify-end">
+            <Animated.View entering={FadeInUp.delay(700).springify()}>
+              <TouchableHighlight
+                underlayColor={"#ff7878"}
+                onPress={handleSubmit(async () => await mutateAsync())}
+                className="bg-[#ff7878] w-creen w-[350px] rounded-full"
               >
-                <Text className=" text-[#bdbdbd] mb-2">email</Text>
-                <TextInput
-                  className={`  text-base py-[10px] px-3 border border-black/30 rounded-full ${
-                    errors.email?.message && "border-[#ff7878]"
-                  }`}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholder={errors.email?.message ? "" : "example@mail.ru"}
-                  placeholderTextColor={"#bdbdbd"}
-                />
+                <Text className="uppercase text-center text-[21px] py-[15px] text-white font-bold">
+                  вход
+                </Text>
+              </TouchableHighlight>
+            </Animated.View>
 
-                <>
-                  {errors.email?.message && (
-                    <Text className="text-red-500">
-                      *{errors.email?.message}
-                    </Text>
-                  )}
-                </>
-              </Animated.View>
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Animated.View
-                entering={FadeInUp.delay(500).springify()}
-                className="w-full"
-              >
-                <Text className=" text-[#bdbdbd] mb-2">password</Text>
-                <TextInput
-                  className={`text-black  text-base py-[10px] px-3 border border-black/30  rounded-full ${
-                    errors.password?.message && "border-[#ff7878]"
-                  }`}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                  placeholderTextColor={"#bdbdbd"}
-                  placeholder="●●●●●●●●●●"
-                />
-
-                <>
-                  {errors.password?.message && (
-                    <Text className="text-red-500">
-                      *{errors.password?.message}
-                    </Text>
-                  )}
-                </>
-              </Animated.View>
-            )}
-          />
+            <Animated.View entering={FadeInUp.delay(900).springify()}>
+              <TouchableHighlight className="">
+                <Link
+                  href={"/(screens)/auth/register/"}
+                  className="uppercase text-center text-[21px] py-[15px]  font-bold"
+                >
+                  регистрация
+                </Link>
+              </TouchableHighlight>
+            </Animated.View>
+          </View>
         </View>
-      </View>
-
-      <View className="justify-center items-center pb-[20px]">
-        <View className="flex-col gap-[20px]">
-          <Animated.View entering={FadeInUp.delay(700).springify()}>
-            <TouchableHighlight
-              underlayColor={"#ff7878"}
-              onPress={handleSubmit(async () => await mutateAsync())}
-              className="bg-[#ff7878] w-creen w-[350px] rounded-full"
-            >
-              <Text className="uppercase text-center text-[21px] py-[15px] text-white font-bold">
-                вход
-              </Text>
-            </TouchableHighlight>
-          </Animated.View>
-
-          <Animated.View entering={FadeInUp.delay(900).springify()}>
-            <TouchableHighlight className="">
-              <Link
-                href={"/(screens)/auth/register/"}
-                className="uppercase text-center text-[21px] py-[15px]  font-bold"
-              >
-                регистрация
-              </Link>
-            </TouchableHighlight>
-          </Animated.View>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
